@@ -1,0 +1,23 @@
+.form-container{
+    background: white;
+    width: 50%;
+    margin: auto;
+}
+
+.mat-toolbar {
+    color: white;
+    top: 0;
+    z-index: 1;
+    background: LIGHTSEAGREEN !important;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.mat-button {
+    color: white;
+}
+.error{
+     color: indianred;
+  }
