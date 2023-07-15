@@ -27,6 +27,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { ExploreContentComponent } from './components/explore-content/explore-content.component';
 import { DialogOverviewExampleDialog } from './components/dialog/dialog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { DialogOverviewExampleDialog } from './components/dialog/dialog.componen
     ReactiveFormsModule,
     MatSelectModule,
     HttpClientModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatProgressSpinnerModule
 
   ],
   providers: [ChatService],
