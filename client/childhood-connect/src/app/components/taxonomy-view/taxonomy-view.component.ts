@@ -55,18 +55,21 @@ export class TaxonomyViewComponent implements OnInit, OnDestroy {
     this.draftTerms = this.approvalList;
   }
   init() {
-
-    this.frameworkService.getFrameworkInfo().subscribe(res => {
-      this.connectorSvc.removeAllLines()
-      this.frameworkService.categoriesHash.value.forEach((cat: any) => {
-        this.loaded[cat.code] = true
-      })
-      this.isLoading = false
-      setTimeout(() => {
-        this.drawHeaderLine(res.result.framework.categories.length);
-      }, 500)
+    this.isLoading = true
+      this.frameworkService.getFrameWorkDetail().subscribe(frameWorkData => {
+      if (frameWorkData) {
+        this.frameworkService.getFrameworkInfo(frameWorkData).subscribe(res => {
+          this.connectorSvc.removeAllLines()
+          this.frameworkService.categoriesHash.value.forEach((cat: any) => {
+            this.loaded[cat.code] = true
+          })
+          this.isLoading = false
+          setTimeout(() => {
+            this.drawHeaderLine(res.result.framework.categories.length);
+          }, 500)
+        })
+      }
     })
-
   }
 
 

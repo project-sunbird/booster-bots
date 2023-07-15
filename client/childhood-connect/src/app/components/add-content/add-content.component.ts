@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChatService } from 'src/app/services/chat.service';
-import { FRAMEWORK } from '../../constants/data'
+// import { FRAMEWORK } from '../../constants/data'
 import { MatDialog } from '@angular/material/dialog';
 import { DialogOverviewExampleDialog } from '../dialog/dialog.component';
+import { FrameworkService } from 'src/app/services/framework.service';
 
 @Component({
   selector: 'app-add-content',
@@ -23,19 +24,18 @@ export class AddContentComponent implements OnInit {
   languages: string[] = ['English', 'Hindi', 'Gujarati', 'Assamese', 'Tamil', 'Marathi', 'Kannada'];
   themes: string[] = ['Animals', 'Birds', 'Vegetables', 'Nature', 'Relations'];
   contentType: string[] = ['Video', 'Read Along', 'Read', 'Audio', 'Sign Language'];
-  competency = FRAMEWORK.result.framework.categories[2].terms.map(function (value) {
-    return value.name;
-  });
+  competency = [];
   routeEnabled: boolean = false;
   responseData: string = '';
   showLoader: boolean = false;
   errorData: boolean = false;
   ol: boolean = false;
 
-  constructor(private route: ActivatedRoute, private chatService: ChatService, public dialog: MatDialog) { }
+  constructor(private route: ActivatedRoute, private chatService: ChatService, public dialog: MatDialog, private frameworkService: FrameworkService,) { }
   data: string;
 
   ngOnInit() {
+    this.getCompetencyList()
     // this.route.queryParams.subscribe(queryParams => {
     //   this.data = queryParams['data'];
     //   if (this.data) {
@@ -43,6 +43,14 @@ export class AddContentComponent implements OnInit {
     //     this.routeEnabled = true;
     //   }
     // });
+  }
+  
+  getCompetencyList() {
+    this.frameworkService.getFrameWorkDetail().subscribe(frameWorkData => {
+      this.competency = frameWorkData.result.framework.categories[2].terms.map(function (value) {
+        return value.name;
+      });
+    });
   }
 
   fetchCompetency() {
