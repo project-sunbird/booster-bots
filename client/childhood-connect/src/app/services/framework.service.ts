@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
-import { FRAMEWORK } from '../constants/data'
+// import { FRAMEWORK } from '../constants/data'
 import { NSFramework } from '../models/framework.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,8 @@ export class FrameworkService {
   selectionList = new Map<string, NSFramework.IColumnView>();
   insertUpdateDeleteNotifier: BehaviorSubject<{ type: 'select' | 'insert' | 'update' | 'delete', action: string, data: any }> = new BehaviorSubject<{ type: 'select' | 'insert' | 'update' | 'delete', action: string, data: any }>(null)
    frameworkId: string;
-
-  getFrameworkInfo(): Observable<any> {
+  constructor(private http: HttpClient) {}
+  getFrameworkInfo(FRAMEWORK): Observable<any> {
     this.resetAll();
     this.formateData(FRAMEWORK);
     return of(FRAMEWORK)
@@ -46,6 +47,7 @@ export class FrameworkService {
   formateData(response: any) {
     this.frameworkId = response.result.framework.code;
     (response.result.framework.categories).forEach((a, idx) => {
+      if (!(a.code === "learningOutcome"))  {
       this.list.set(a.code, {
         code: a.code,
         identifier: a.identifier,
@@ -65,6 +67,7 @@ export class FrameworkService {
           return c
         })
       })
+    }
     });
     const allCategories = []
     this.list.forEach(a => {
@@ -79,4 +82,9 @@ export class FrameworkService {
     })
     this.categoriesHash.next(allCategories)
   }
+  
+  getFrameWorkDetail(): Observable<any> {
+    const url = `https://sunbirdsaas.com/api/framework/v1/read/ncffsfw`;
+    return this.http.get(url);
+    }
 }
