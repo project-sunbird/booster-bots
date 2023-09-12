@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button style="color: black;"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{chapterName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="container">
+    <h4 *ngIf="query.role == 'Student'">What do you want to learn? </h4>
+    <h4 *ngIf="query.role == 'Teacher'">What do you want to teach? </h4>
+  </div>
+  <div class="container">
+    <div class="card" *ngFor="let content of contents; let i = index" (click)="selectedContent = content">
+      <label class="selection{{i}}" [for]="content" [class.selected]="selectedContent === content">
+        <span class="label-text" style="color: black;">
+          {{content.type}}
+        </span>
+      </label>
+    </div>
+  </div>
+
+  <ion-button type="submit" expand="block" class="sign-in" (click)="navigateToContentDetails()" [disabled]="!selectedContent">Continue</ion-button>
+</ion-content>

@@ -1,0 +1,122 @@
+.text-style{
+    white-space: pre-wrap !important
+}
+
+
+.float-left {
+    float: left;
+    display: flex;
+    width: 80%;
+    padding-left: 6px;
+    ion-card, ion-chip {
+        border-radius: 20px 20px 20px 0;
+    }
+}
+
+.selectedLang {
+    --background: #1ca174de;
+    color: white !important;
+}
+
+.float-right {
+    float: right;
+    display: flex;
+    margin-left: 20%;
+
+    ion-card, ion-chip {
+        border-radius: 20px 20px 0;
+        margin-right: 0;
+    }
+}
+
+img {
+  max-width: 12% !important;
+  height: 3rem;
+  padding: 7px 0;
+  margin-top: 6px;
+}
+
+ion-card, ion-chip{
+    background-color: white;
+}
+
+.selecetd.chipContent0 {
+    background-color: #024f9d;
+    color: white !important;
+}
+
+.chipContent0 {
+    border: 2px solid #024f9d;
+    color: #024f9d !important;
+}
+
+.selecetd.chipContent1 {
+    background-color: #008840;
+    color: white !important;
+}
+
+.chipContent1 {
+    border: 2px solid #008840;
+    color: #008840 !important;
+}
+
+.selecetd.chipContent2, .selecetd.chipContent2 {
+    background-color: #e55a28;
+    color: white !important;
+}
+
+.chipContent2, .chipContent2 {
+    border: 2px solid #e55a28;
+    color: #e55a28 !important;
+}
+
+ion-footer {
+    div {
+        display: flex;
+        justify-content: center;
+    }
+    ion-chip {
+        border: 1px solid black;
+        ion-icon {
+            margin: 0;
+        }
+
+        .bulb {
+            color: #f3e005
+        }
+
+        .ear {
+            color: orange;
+        }
+
+        .add {
+            color: black;
+        }
+        // .chevron-up,.chevron-back,.chevron-forward {
+        //     color: black;
+        // }
+
+        .print {
+            color: #024f9d;
+        }
+        .download {
+            color: darkslategrey !important;
+        }
+    }
+}
+
+ion-popover{
+    --width: auto;
+    ion-list {
+        padding: 0;
+        width: auto;
+
+        ion-label {
+            padding-left: 10px;
+        }
+    }
+}
+
+.item-disabled {
+    opacity: 0.7 !important;
+}
